@@ -7,7 +7,9 @@ module Recipes
     end
 
     def call
-      result = contentful.entries(content_type: RECIPE_CONTENT_TYPE, limit: PER_PAGE, skip: skip)
+      result = Rails.cache.fetch("recipes-#{skip}", expires_in: 5.minutes) do
+        contentful.entries(content_type: RECIPE_CONTENT_TYPE, limit: PER_PAGE, skip: skip)
+      end
 
       {
         pages_total: result.total,
