@@ -1,0 +1,30 @@
+<h1>
+
+  <%= @recipe.title %><br>
+</h1>
+
+<hr>
+
+<%= image_tag(@recipe.image_url, class: 'image_container') %><br>
+
+<hr>
+
+<%= render_description(@recipe.description) %><br>
+
+<hr>
+
+chef:
+<% if @recipe.chef.present? %>
+  <%= @recipe.chef_name %>
+<% else %>
+  -
+<% end %>
+
+<hr>
+
+tags:
+<%= render_tags(@recipe.tags_list) %>
+
+<hr>
+
+<%= link_to('Back', recipes_path) %>

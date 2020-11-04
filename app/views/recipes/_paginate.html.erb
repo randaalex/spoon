@@ -1,0 +1,10 @@
+<% pages_count.times do |page| %>
+  <% page = page + 1 %>
+
+  <% if page == current_page %>
+    <%= page %>
+  <% else %>
+    <%= link_to(page, url_for(page: page)) %>
+  <% end %>
+<% end %>
+
